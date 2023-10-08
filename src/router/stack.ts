@@ -1,15 +1,24 @@
 import { autorun, makeAutoObservable, runInAction } from 'mobx'
 
+export interface IPage {
+  id: string
+  stamp: number
+  title: string
+  pathname: string
+  search: string
+  href: string
+}
+
 class Stack {
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true })
   }
 
-  pages: any[] = []
+  pages: IPage[] = []
 
   // actions
-  pushPage(u: string) {
-    this.pages.push(u)
+  pushPage(p: IPage) {
+    this.pages.push(p)
   }
 }
 

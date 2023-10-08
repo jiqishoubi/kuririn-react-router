@@ -4,6 +4,7 @@ import styles from './index.module.less'
 import { observer } from 'mobx-react'
 import stack from '../stack'
 import useRouter from '../useRouter'
+import cloneDeep from 'lodash/cloneDeep'
 
 const pageModules = import.meta.globEager('@/pages/**/**/index.tsx')
 
@@ -11,11 +12,12 @@ const PageRouter: React.FC = () => {
   useRouter()
 
   const pages = stack.pages
+  console.log('🚀 ~ pages:', cloneDeep(pages))
 
   return (
     <>
       {pages.map((page, index) => {
-        const key = `_${index}_${page}`
+        const key = `_${index}_${page.href}`
         return (
           <div
             key={key}
