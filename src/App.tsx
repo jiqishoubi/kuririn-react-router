@@ -5,11 +5,11 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import PageRouter from '@/router/PageRouter'
+import PageRoutes from '@/router/PageRoutes'
 
 function App() {
   return (
-    <PageRouter />
+    <PageRoutes />
 
     //
     // <Router>

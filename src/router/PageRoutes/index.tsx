@@ -8,7 +8,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 const pageModules = import.meta.globEager('@/pages/**/**/index.tsx')
 
-const PageRouter: React.FC = () => {
+const Index: React.FC = () => {
   useRouter()
 
   const pages = stack.pages
@@ -34,4 +34,4 @@ const PageRouter: React.FC = () => {
     </>
   )
 }
-export default observer(PageRouter)
+export default observer(Index)
