@@ -12,6 +12,7 @@ const PageRouter: React.FC = () => {
   useRouter()
 
   const pages = stack.pages
+  // console.log('🚀 ~ pages:', cloneDeep(pages))
 
   return (
     <>

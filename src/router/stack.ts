@@ -19,7 +19,7 @@ class Stack {
     this.pages.push(p)
   }
   backPage(n: number) {
-    this.pages = this.pages.slice(0, this.pages.length - n)
+    this.pages = this.pages.slice(0, this.pages.length + n)
   }
 }
 

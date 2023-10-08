@@ -3,6 +3,12 @@ import stack, { IPage } from './stack'
 
 export const history = createBrowserHistory()
 
+/**
+ *
+ * 只有push时，才去操作stack
+ * back只是触发history的back，进而触发popstate,在popstate中去操作stack
+ */
+
 function handlePush(url: string) {
   const stamp = new Date().getTime()
   const page: IPage = {
@@ -17,19 +23,12 @@ function handlePush(url: string) {
   stack.pushPage(page)
 }
 
-function handleForward(page: IPage) {
-  history.forward()
-  stack.pushPage(page)
-}
-
 function handleBack(n: number = -1) {
   history.go(n)
-  stack.backPage(n)
 }
 
 const router = {
   push: handlePush,
-  forward: handleForward,
   back: handleBack,
 }
 
