@@ -1,11 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import history from '@/router/history'
 
 const Index: React.FC = () => {
   return (
     <>
-      detail
-      <button onClick={() => {}}>back</button>
+      detail1
+      <button
+        onClick={() => {
+          history.back()
+        }}
+      >
+        back
+      </button>
       <div
         style={{
           height: 8000,

@@ -9,9 +9,7 @@ import PageRouter from '@/router/PageRouter'
 
 function App() {
   return (
-    <Router>
-      <PageRouter />
-    </Router>
+    <PageRouter />
     // <Router>
     //   <Routes>
     //     <Route path="/" element={<Page_index />}></Route>

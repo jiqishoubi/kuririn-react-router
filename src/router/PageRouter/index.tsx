@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import PageGetter from '../PageGetter'
-import { useLocation } from 'react-router-dom'
+import history from '../history'
 
 const pageModules = import.meta.globEager('@/pages/**/**/index.tsx')
 
 const PageRouter: React.FC = () => {
   const [pages, setPages] = useState<any[]>([])
 
-  const location = useLocation()
-  const pathname = location.pathname
-  console.log('🚀 ~ location:', location)
-
   useEffect(() => {
-    handlePathname(pathname)
-  }, [pathname])
-
-  function handlePathname(pathname: string) {
-    setPages((curPages) => {
-      return [...curPages, pathname]
+    const pathname = history.location.pathname
+    handlePathname(pathname, 'PUSH')
+    const unlisten = history.listen(({ location, action }) => {
+      handlePathname(location.pathname, action as any)
     })
+    return unlisten
+  }, [])
+
+  function handlePathname(pathname: string, action: 'PUSH' | 'POP') {
+    console.log('🚀 ~ action:', action)
+    if (action === 'PUSH') {
+      setPages((curPages) => [...curPages, pathname])
+    } else {
+      setPages((curPages) => curPages.slice(0, curPages.length - 1))
+    }
   }
 
   return (
