@@ -7,7 +7,11 @@ const Index: React.FC = () => {
 
   useEffect(() => {
     console.log('index load')
+    console.log('🚀 ~ list', list)
     setList(new Array(100).fill(0))
+    return () => {
+      console.log('index unload')
+    }
   }, [])
 
   return (
