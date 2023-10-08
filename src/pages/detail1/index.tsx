@@ -8,6 +8,13 @@ const Index: React.FC = () => {
       detail1
       <button
         onClick={() => {
+          history.push('/pages/detail2/index')
+        }}
+      >
+        go detail2
+      </button>
+      <button
+        onClick={() => {
           history.back()
         }}
       >

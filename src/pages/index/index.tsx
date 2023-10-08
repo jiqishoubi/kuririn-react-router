@@ -43,7 +43,7 @@ const Index: React.FC = () => {
       </div>
       <button
         onClick={() => {
-          history.push('/pages/detail/index')
+          history.push('/pages/detail1/index')
           // navigate('/pages/detail/index')
         }}
         style={{
@@ -54,7 +54,7 @@ const Index: React.FC = () => {
           height: 100,
         }}
       >
-        go detail2
+        go detail1
       </button>
     </>
   )
