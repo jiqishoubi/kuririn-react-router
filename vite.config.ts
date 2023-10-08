@@ -14,7 +14,7 @@ const BASE_HOST = (() => {
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5000,
+    port: 6001,
   },
   resolve: {
     alias: {
