@@ -1,6 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import history from '@/router/history'
+// import { useNavigate } from 'react-router-dom'
 
 const Index: React.FC = () => {
   return (
@@ -8,7 +7,7 @@ const Index: React.FC = () => {
       detail2
       <button
         onClick={() => {
-          history.back()
+          // history.back()
         }}
       >
         back

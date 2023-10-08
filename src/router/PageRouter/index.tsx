@@ -1,30 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import PageGetter from '../PageGetter'
-import history from '../history'
 import styles from './index.module.less'
+import { observer } from 'mobx-react'
+import stack from '../stack'
+import useRouter from '../useRouter'
 
 const pageModules = import.meta.globEager('@/pages/**/**/index.tsx')
 
 const PageRouter: React.FC = () => {
-  const [pages, setPages] = useState<any[]>([])
+  useRouter()
 
-  useEffect(() => {
-    const pathname = history.location.pathname
-    handlePathname(pathname, 'PUSH')
-    const unlisten = history.listen(({ location, action }) => {
-      handlePathname(location.pathname, action as any)
-    })
-    return unlisten
-  }, [])
-
-  function handlePathname(pathname: string, action: 'PUSH' | 'POP') {
-    console.log('🚀 ~ action:', action)
-    if (action === 'PUSH') {
-      setPages((curPages) => [...curPages, pathname])
-    } else {
-      setPages((curPages) => curPages.slice(0, curPages.length - 1))
-    }
-  }
+  const pages = stack.pages
 
   return (
     <>
@@ -46,4 +32,4 @@ const PageRouter: React.FC = () => {
     </>
   )
 }
-export default PageRouter
+export default observer(PageRouter)

@@ -1,6 +1,4 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import history from '@/router/history'
 
 const Index: React.FC = () => {
   return (
@@ -8,7 +6,7 @@ const Index: React.FC = () => {
       detail1
       <button
         onClick={() => {
-          history.push('/pages/detail2/index')
+          // history.push('/pages/detail2/index')
         }}
       >
         go detail2

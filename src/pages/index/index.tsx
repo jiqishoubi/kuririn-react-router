@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import history from '@/router/history'
+import router from '@/router'
 
 const Index: React.FC = () => {
-  // const navigate = useNavigate()
   const [list, setList] = useState<any[]>([])
 
   useEffect(() => {
@@ -43,8 +42,7 @@ const Index: React.FC = () => {
       </div>
       <button
         onClick={() => {
-          history.push('/pages/detail1/index')
-          // navigate('/pages/detail/index')
+          router.push('/pages/detail1/index')
         }}
         style={{
           position: 'fixed',
