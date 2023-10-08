@@ -21,6 +21,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  // css: {
+  //   preprocessorOptions: {
+  //     less: {
+  //       javascriptEnabled: true, // 支持内联 JavaScript
+  //     },
+  //   },
+  // },
   base: './',
   define: {
     global: 'window', // 为了修复 react-codemirror2 'global is not define'

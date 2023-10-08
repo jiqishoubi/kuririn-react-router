@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PageGetter from '../PageGetter'
 import history from '../history'
+import styles from './index.module.less'
 
 const pageModules = import.meta.globEager('@/pages/**/**/index.tsx')
 
@@ -33,6 +34,7 @@ const PageRouter: React.FC = () => {
           <div
             key={key}
             id={key}
+            className={styles._page}
             style={{
               display: index === pages.length - 1 ? 'block' : 'none',
             }}
