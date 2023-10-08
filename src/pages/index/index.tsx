@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Index: React.FC = () => {
-  const navigate = useNavigate()
   const [list, setList] = useState<any[]>([])
 
   useEffect(() => {
@@ -41,9 +40,7 @@ const Index: React.FC = () => {
         ))}
       </div>
       <button
-        onClick={() => {
-          navigate('/detail')
-        }}
+        onClick={() => {}}
         style={{
           position: 'fixed',
           bottom: 0,

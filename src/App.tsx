@@ -7,15 +7,17 @@ import {
 } from 'react-router-dom'
 import Page_index from '@/pages/index'
 import Page_detail from '@/pages/detail'
+import PageRouter from '@/router/PageRouter'
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Page_index />}></Route>
-        <Route path="/detail" element={<Page_detail />}></Route>
-      </Routes>
-    </Router>
+    <PageRouter />
+    // <Router>
+    //   <Routes>
+    //     <Route path="/" element={<Page_index />}></Route>
+    //     <Route path="/detail" element={<Page_detail />}></Route>
+    //   </Routes>
+    // </Router>
   )
 }
 
