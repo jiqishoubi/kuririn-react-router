@@ -14,7 +14,7 @@ const PageGetter: React.FC<{
       const pageModulesKey = '/src' + routes[0] + '.tsx'
       return pageModules[pageModulesKey]?.default
     } else if (routes.some((route) => route === pathname)) {
-      const pageModulesKey = '/src' + page + '.tsx'
+      const pageModulesKey = '/src' + pathname + '.tsx'
       return pageModules[pageModulesKey]?.default || Page404
     } else {
       return Page404

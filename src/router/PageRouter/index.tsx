@@ -12,12 +12,11 @@ const PageRouter: React.FC = () => {
   useRouter()
 
   const pages = stack.pages
-  console.log('🚀 ~ pages:', cloneDeep(pages))
 
   return (
     <>
       {pages.map((page, index) => {
-        const key = `_${index}_${page.href}`
+        const key = `_${index}_${page.url}`
         return (
           <div
             key={key}

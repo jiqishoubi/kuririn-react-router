@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import router from '@/router'
 
 const Index: React.FC = () => {
@@ -7,7 +6,6 @@ const Index: React.FC = () => {
 
   useEffect(() => {
     console.log('index load')
-    // console.log('🚀 ~ list', list)
     setList(new Array(100).fill(0))
     return () => {
       console.log('index unload')

@@ -1,12 +1,10 @@
 import { autorun, makeAutoObservable, runInAction } from 'mobx'
 
 export interface IPage {
-  id: string
   stamp: number
-  title: string
   pathname: string
   search: string
-  href: string
+  url: string
 }
 
 class Stack {
@@ -19,6 +17,9 @@ class Stack {
   // actions
   pushPage(p: IPage) {
     this.pages.push(p)
+  }
+  backPage(n: number) {
+    this.pages = this.pages.slice(0, this.pages.length - n)
   }
 }
 

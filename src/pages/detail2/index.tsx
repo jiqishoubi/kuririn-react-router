@@ -1,5 +1,5 @@
+import router from '@/router'
 import React from 'react'
-// import { useNavigate } from 'react-router-dom'
 
 const Index: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const Index: React.FC = () => {
       detail2
       <button
         onClick={() => {
-          // history.back()
+          router.back()
         }}
       >
         back
