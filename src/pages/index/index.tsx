@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Index: React.FC = () => {
+  const navigate = useNavigate()
   const [list, setList] = useState<any[]>([])
 
   useEffect(() => {
     console.log('index load')
-    console.log('🚀 ~ list', list)
+    // console.log('🚀 ~ list', list)
     setList(new Array(100).fill(0))
     return () => {
       console.log('index unload')
@@ -41,7 +42,8 @@ const Index: React.FC = () => {
       </div>
       <button
         onClick={() => {
-          // window.location.href = '/pages/detail/index'
+          // history.push('/pages/detail/index')
+          navigate('/pages/detail/index')
         }}
         style={{
           position: 'fixed',

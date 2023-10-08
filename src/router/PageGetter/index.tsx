@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import routes from '@/routes'
-import Page404 from '@/router/404'
+import Page404 from '../404'
 
 const PageGetter: React.FC<{
   pageModules: any

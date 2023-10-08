@@ -5,13 +5,13 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import Page_index from '@/pages/index'
-import Page_detail from '@/pages/detail'
 import PageRouter from '@/router/PageRouter'
 
 function App() {
   return (
-    <PageRouter />
+    <Router>
+      <PageRouter />
+    </Router>
     // <Router>
     //   <Routes>
     //     <Route path="/" element={<Page_index />}></Route>
