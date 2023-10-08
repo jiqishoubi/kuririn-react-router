@@ -12,17 +12,23 @@
     "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,vue,css,less,scss,md,json}'"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.199",
     "@types/node": "^20.8.3",
+    "ahooks": "^3.7.8",
     "axios": "^1.5.1",
+    "bld-utils": "git+https://code.bld365.com/bld-ui/bld-utils.git#semver:^1.0.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
     "husky": "^8.0.3",
     "less": "^4.2.0",
     "lint-staged": "^14.0.1",
     "lodash": "^4.17.21",
+    "mobx": "^6.10.2",
+    "mobx-react": "^9.0.1",
     "prettier": "^2.5.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
