@@ -40,7 +40,9 @@ const Index: React.FC = () => {
         ))}
       </div>
       <button
-        onClick={() => {}}
+        onClick={() => {
+          // window.location.href = '/pages/detail/index'
+        }}
         style={{
           position: 'fixed',
           bottom: 0,

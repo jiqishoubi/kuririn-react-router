@@ -19,9 +19,11 @@ const PageRouter: React.FC = () => {
   return (
     <>
       {pages.map((page, index) => {
+        const key = `_${index}_${page}`
         return (
           <div
-            key={`_${index}_${page}`}
+            key={key}
+            id={key}
             style={{
               display: index === pages.length - 1 ? 'block' : 'none',
             }}
