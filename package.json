@@ -16,6 +16,7 @@
     "@types/node": "^20.8.3",
     "ahooks": "^3.7.8",
     "axios": "^1.5.1",
+    "bld-react": "git+https://code.bld365.com/bld-ui/bld-react.git#semver:^1.0.0",
     "bld-utils": "git+https://code.bld365.com/bld-ui/bld-utils.git#semver:^1.0.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
