@@ -1,0 +1,8 @@
+/.husky
+/node_modules
+/dist
+
+*_bak.*
+
+*.min.js
+*.min.css
