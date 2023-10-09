@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PageGetter from '../PageGetter'
-import styles from './index.module.less'
 import { observer } from 'mobx-react'
 import stack from '../stack'
 import useRouter from '../useRouter'
@@ -36,8 +35,10 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
           <div
             key={key}
             id={key}
-            className={styles._page}
+            className="_kuririn_react_router_page"
             style={{
+              overflow: 'auto',
+              height: '100vh',
               display: index === pages.length - 1 ? 'block' : 'none',
             }}
           >
