@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "prettier-all": "prettier --write '**/*.{js,jsx,ts,tsx,vue,css,less,scss,md,json}'",
-    "publish": "npm version patch && npm publish"
+    "pub": "npm version patch && npm publish"
   },
   "dependencies": {
     "@types/history": "^5.0.0",
