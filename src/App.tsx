@@ -1,23 +1,18 @@
-import {
-  // MemoryRouter as Router, //
-  // HashRouter as Router,
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from 'react-router-dom'
-import PageRoutes from '@/router/PageRoutes'
+import { KRoutes } from '@/kuririn-react-router'
+import PageIndex from '@/pages/index/index'
+import PageDetail1 from '@/pages/detail1/index'
+import PageDetail2 from '@/pages/detail2/index'
 
 function App() {
   return (
-    <PageRoutes />
-
-    //
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<Page_index />}></Route>
-    //     <Route path="/detail" element={<Page_detail />}></Route>
-    //   </Routes>
-    // </Router>
+    <KRoutes
+      historyType="hash"
+      pages={[
+        { path: '/', component: PageIndex },
+        { path: '/detail1', component: PageDetail1 },
+        { path: '/detail2', component: PageDetail2 },
+      ]}
+    />
   )
 }
 
