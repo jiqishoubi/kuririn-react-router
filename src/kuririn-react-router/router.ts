@@ -39,12 +39,6 @@ export function getPage(url: string, params: Partial<IPage> = {}): IPage {
   }
 }
 
-/**
- *
- * 只有push时，才去操作stack
- * back只是触发history的back，进而触发popstate,在popstate中去操作stack
- */
-
 function handlePush(url: string) {
   const page = getPage(url)
 
@@ -52,6 +46,10 @@ function handlePush(url: string) {
   stack.pushPage(page)
 }
 
+/**
+ *
+ * back只是触发history的back，进而触发popstate,在popstate中去操作stack
+ */
 function handleBack(n: number = -1) {
   getHistory().go(n)
 }
