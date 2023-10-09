@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import router from '@/router'
 
 const Index: React.FC = () => {
+  const [inputValue, setInputValue] = useState<string>('')
   const [list, setList] = useState<any[]>([])
 
   useEffect(() => {
@@ -14,6 +15,14 @@ const Index: React.FC = () => {
 
   return (
     <>
+      <div>
+        <input
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value)
+          }}
+        />
+      </div>
       index
       <div
         style={{
