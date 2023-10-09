@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import Page404 from '../404'
 import { IPage } from '../stack'
 import { IKRoutesProps } from '../KRoutes'

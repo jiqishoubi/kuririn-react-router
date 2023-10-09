@@ -1,5 +1,4 @@
 import { KRoutes } from '@/kuririn-react-router'
-// import { KRoutes } from '../dist/es/index.js'
 import PageIndex from '@/pages/index/index'
 import PageDetail1 from '@/pages/detail1/index'
 import PageDetail2 from '@/pages/detail2/index'
