@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo } from 'react'
 import Page404 from '../404'
 import { IPage } from '../stack'
-import { IKRoutesProps } from '../KRoutes'
+import { IPathComponent, IKRoutesProps } from '../KRoutes'
 
 const PageGetter: React.FC<{
   allPages: IKRoutesProps['pages']
   page: IPage
-  page404?: React.FC
+  page404?: IPathComponent
 }> = (pros) => {
   const { allPages, page, page404 } = pros
 
@@ -29,6 +29,7 @@ const PageGetter: React.FC<{
     }
   }, [allPages, page])
 
+  // @ts-ignore
   return <PageComponent />
 }
 export default PageGetter

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import PageGetter from '../PageGetter'
 import { observer } from 'mobx-react'
 import stack from '../stack'
@@ -6,15 +6,17 @@ import useRouter from '../useRouter'
 import cloneDeep from 'lodash/cloneDeep'
 import { IHistoryType, setHistory } from '../router'
 
+export type IPathComponent = React.FC<any> | React.ComponentClass | React.ComponentType | React.ReactElement
+
 export interface IPageItem {
   path: string
-  component: React.FC
+  component: IPathComponent
 }
 
 export interface IKRoutesProps {
   historyType?: IHistoryType
   pages: IPageItem[]
-  page404?: React.FC
+  page404?: IPathComponent
 }
 
 const KRoutes: React.FC<IKRoutesProps> = (props) => {
@@ -42,7 +44,11 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
               display: index === pages.length - 1 ? 'block' : 'none',
             }}
           >
-            <PageGetter allPages={allPages} page={page} page404={page404} />
+            <PageGetter
+              allPages={allPages}
+              page={page}
+              page404={page404} //
+            />
           </div>
         )
       })}
