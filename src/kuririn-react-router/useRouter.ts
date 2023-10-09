@@ -11,21 +11,23 @@ function _listen(evt: PopStateEvent) {
 
   const page = evt.state.usr as IPage
 
-  const findStampIndex = pages.findIndex((p) => p.stamp === page.stamp)
+  if (page) {
+    const findStampIndex = pages.findIndex((p) => p.stamp === page.stamp)
 
-  if (findStampIndex > -1 && findStampIndex < pages.length - 1) {
-    // 后退
-    // console.log('🚀 ~ 后退')
-    stack.backPage(-(pages.length - 1 - findStampIndex))
-  } else {
-    // 前进
-    // console.log('🚀 ~ 前进')
-    stack.pushPage(page)
+    if (findStampIndex > -1 && findStampIndex < pages.length - 1) {
+      // 后退
+      // console.log('🚀 ~ 后退')
+      stack.backPage(-(pages.length - 1 - findStampIndex))
+    } else {
+      // 前进
+      // console.log('🚀 ~ 前进')
+      stack.pushPage(page)
+    }
+
+    // setTimeout(() => {
+    //   console.log('🚀 ~ pages end:', cloneDeep(stack.pages))
+    // }, 0)
   }
-
-  // setTimeout(() => {
-  //   console.log('🚀 ~ pages end:', cloneDeep(stack.pages))
-  // }, 0)
 }
 const listenFunc = throttle(_listen, 10, { leading: true, trailing: false })
 
@@ -39,6 +41,7 @@ export default function useRouter() {
     // console.log("🚀 ~ 初次 pathname:", pathname)
     router.push(pathname)
 
+    // listen
     window.addEventListener('popstate', listenFunc, false)
 
     return () => {

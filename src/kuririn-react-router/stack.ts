@@ -14,10 +14,11 @@ class Stack {
 
   pages: IPage[] = []
 
-  // actions
+  /// actions
   pushPage(p: IPage) {
     this.pages.push(p)
   }
+  // 剔除回到的页面 之后的页面
   backPage(n: number) {
     this.pages = this.pages.slice(0, this.pages.length + n)
   }

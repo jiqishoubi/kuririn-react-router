@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import Page404 from '../404'
-import stack, { IPage } from '../stack'
+import { IPage } from '../stack'
 import { IPathComponent, IKRoutesProps } from '../KRoutes'
 import cloneDeep from 'lodash/cloneDeep'
 

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import PageGetter from '../PageGetter'
 import { observer } from 'mobx-react'
 import stack from '../stack'
