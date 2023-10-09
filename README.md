@@ -7,6 +7,8 @@
 演示：
 detail1 是 二级页面，detail2 是 三级页面
 
+[演示 gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ef290dad56a4ee290fd6309b6d85cc1~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2028&h=1608&s=11646572&e=gif&f=1640&b=24241e)
+
 ## KRoutes
 
 ### Props
