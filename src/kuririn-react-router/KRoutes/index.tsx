@@ -33,6 +33,7 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
     <>
       {pages.map((page, index) => {
         const key = `_${index}_${page.url}`
+        const isKBlock = index === pages.length - 1 // 显示出来
         return (
           <div
             key={key}
@@ -41,13 +42,14 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
             style={{
               overflow: 'auto',
               height: '100vh',
-              display: index === pages.length - 1 ? 'block' : 'none',
+              display: isKBlock ? 'block' : 'none',
             }}
           >
             <PageGetter
               allPages={allPages}
               page={page}
               page404={page404} //
+              isKBlock={isKBlock}
             />
           </div>
         )

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { router } from '@/kuririn-react-router'
+import { router, onPageShow, onPageHide } from '@/kuririn-react-router'
 
-const Index: React.FC = () => {
+const Index: React.FC = (props) => {
   const [inputValue, setInputValue] = useState<string>('')
   const [list, setList] = useState<any[]>([])
 
@@ -12,6 +12,14 @@ const Index: React.FC = () => {
       console.log('index unload')
     }
   }, [])
+
+  onPageShow(props, () => {
+    console.log('🚀 ~ ', 'index 页面show了')
+  })
+
+  onPageHide(props, () => {
+    console.log('🚀 ~ ', 'index 页面hide了')
+  })
 
   return (
     <>
