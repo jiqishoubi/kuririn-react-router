@@ -1,7 +1,7 @@
 {
   "name": "kuririn-react-router",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "module": "./dist/es/index.js",
   "main": "./dist/lib/index.cjs",
