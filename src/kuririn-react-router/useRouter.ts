@@ -36,6 +36,7 @@ const listenFunc = throttle(_listen, 420, { leading: true, trailing: false })
 export default function useRouter() {
   useEffect(() => {
     const pathname = getHistory()?.location.pathname || window.location.pathname
+    // console.log("🚀 ~ 初次 pathname:", pathname)
     router.push(pathname)
 
     window.addEventListener('popstate', listenFunc, false)

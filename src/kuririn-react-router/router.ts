@@ -33,7 +33,6 @@ function handlePush(url: string) {
     url: url,
   }
 
-  // console.log('🚀 ~ history', history)
   getHistory().push(url, page)
   stack.pushPage(page)
 }

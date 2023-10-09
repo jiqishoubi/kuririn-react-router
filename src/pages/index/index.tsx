@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import router from '@/router'
+import { router } from '@/kuririn-react-router'
 
 const Index: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('')
@@ -49,7 +49,7 @@ const Index: React.FC = () => {
       </div>
       <button
         onClick={() => {
-          router.push('/pages/detail1/index')
+          router.push('/detail1')
         }}
         style={{
           position: 'fixed',
