@@ -1,8 +1,10 @@
 {
   "name": "kuririn-react-router",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "module": "./dist/es/index.js",
+  "main": "./dist/lib/index.cjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -28,7 +30,8 @@
     "prettier": "^2.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "vite-plugin-dts": "^3.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -39,5 +42,8 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,vue,css,less,scss,md,json}": "prettier --write"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

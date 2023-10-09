@@ -1,36 +1,52 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-
-// 这里设置请求域名
-const BASE_HOST = (() => {
-  if (process.env.NODE_ENV === 'development') {
-    return 'https://tuikeapit.bld365.com'
-  }
-  return 'https://tuikeapi.bld365.com'
-})()
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // 打包生成 .d.ts 声明文件
+    dts({
+      include: [path.resolve(__dirname, 'src/kuririn-react-router/**/*')],
+      outDir: path.resolve(__dirname, 'dist/types'),
+      exclude: [path.resolve(__dirname, 'node_modules/**/*')],
+    }),
+  ],
   server: {
-    port: 6001,
+    port: 6002,
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  // css: {
-  //   preprocessorOptions: {
-  //     less: {
-  //       javascriptEnabled: true, // 支持内联 JavaScript
-  //     },
-  //   },
-  // },
   base: './',
   define: {
     global: 'window', // 为了修复 react-codemirror2 'global is not define'
-    BASE_HOST: JSON.stringify(BASE_HOST),
+    // BASE_HOST: JSON.stringify(BASE_HOST),
+  },
+  // 打包库模式
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, './src/kuririn-react-router/index.ts'),
+      name: 'kuririn-react-router',
+      fileName: 'index',
+    },
+    emptyOutDir: true,
+    rollupOptions: {
+      external: ['react', 'mobx', 'mobx-react'], // 确保外部化处理那些你不想打包进库的依赖
+      output: [
+        {
+          format: 'es',
+          dir: path.resolve(__dirname, 'dist/es'),
+        },
+        {
+          format: 'cjs',
+          dir: path.resolve(__dirname, 'dist/lib'),
+        },
+      ],
+    },
   },
 })
