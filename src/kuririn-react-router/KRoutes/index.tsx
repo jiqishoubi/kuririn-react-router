@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PageGetter from '../PageGetter'
 import { observer } from 'mobx-react'
-import stack from '../stack'
+import stack, { IPage } from '../stack'
 import useRouter from '../useRouter'
 import cloneDeep from 'lodash/cloneDeep'
-import { IHistoryType, setHistory } from '../router'
+import { IHistoryType, getHistory, setKData } from '../router'
 
 export type IPathComponent = React.FC<any> | React.ComponentClass | React.ComponentType | React.ReactElement
 
+// 传给KRoutes的pages的每一项
 export interface IPageItem {
   path: string
   component: IPathComponent
+  isTab?: boolean
 }
 
 export interface IKRoutesProps {
@@ -20,20 +22,54 @@ export interface IKRoutesProps {
 }
 
 const KRoutes: React.FC<IKRoutesProps> = (props) => {
-  const { historyType = 'browser', pages: allPages, page404 } = props
+  const { historyType = 'browser', pages: allPageItems, page404 } = props
 
-  setHistory(historyType)
+  // 初始化 传进来的一些值
+  setKData({
+    historyType,
+    allPageItems,
+  })
 
   useRouter()
 
+  const pathname = getHistory().location.pathname
   const pages = stack.pages
-  // console.log('🚀 ~ pages:', cloneDeep(pages))
+  console.log('🚀 ~ pages:', cloneDeep(pages))
+
+  const pagesRes = (() => {
+    let tabPages: IPage[] = []
+    let normalPages: IPage[] = []
+    pages.forEach((page) => {
+      if (page.isTab) {
+        tabPages.push(page)
+      } else {
+        normalPages.push(page)
+      }
+    })
+    return {
+      tabPages,
+      normalPages,
+    }
+  })()
+
+  const curPageItem = allPageItems.find((pageItem) => pageItem.path === pathname)
 
   return (
     <>
       {pages.map((page, index) => {
         const key = `_${index}_${page.url}`
-        const isKBlock = index === pages.length - 1 // 显示出来
+
+        const isKBlock = (() => {
+          if (curPageItem) {
+            if (curPageItem.isTab) {
+              return !!(curPageItem.path === page.pathname && pagesRes.tabPages.find((tabPage) => tabPage.pathname === curPageItem?.path)?.isTabActive)
+            } else {
+              return !!(curPageItem.path === page.pathname && pagesRes.normalPages[pagesRes.normalPages.length - 1]?.pathname === curPageItem?.path)
+            }
+          }
+          return false
+        })()
+
         return (
           <div
             key={key}
@@ -46,7 +82,6 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
             }}
           >
             <PageGetter
-              allPages={allPages}
               page={page}
               page404={page404} //
               isKBlock={isKBlock}
