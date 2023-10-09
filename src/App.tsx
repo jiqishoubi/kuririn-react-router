@@ -6,7 +6,6 @@ import PageDetail2 from '@/pages/detail2/index'
 function App() {
   return (
     <KRoutes
-      historyType="hash"
       pages={[
         { path: '/', component: PageIndex },
         { path: '/detail1', component: PageDetail1 },

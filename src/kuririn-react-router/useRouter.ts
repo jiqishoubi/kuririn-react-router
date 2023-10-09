@@ -27,7 +27,7 @@ function _listen(evt: PopStateEvent) {
   //   console.log('🚀 ~ pages end:', cloneDeep(stack.pages))
   // }, 0)
 }
-const listenFunc = throttle(_listen, 420, { leading: true, trailing: false })
+const listenFunc = throttle(_listen, 100, { leading: true, trailing: false })
 
 /**
  *
