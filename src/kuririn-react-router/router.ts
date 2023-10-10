@@ -84,7 +84,11 @@ function handleFisrtPage(url: string) {
   if (isTab) {
     router.switchTab(url)
   } else {
-    router.push(url)
+    // router.push(url) ×
+    // here cannot use router.push(url), because fisrt page will trigger history's popstate
+    // directly operate stack
+    const page = getPage(url)
+    stack.pushPage(page)
   }
 }
 

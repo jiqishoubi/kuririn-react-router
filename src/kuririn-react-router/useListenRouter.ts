@@ -10,7 +10,7 @@ import throttle from 'lodash/throttle'
  * This is the pop state event triggered by browser forward and backward, routing changes, so there is no need to handle the router, just handle the pages data in the stack
  */
 function _listen(evt: PopStateEvent) {
-  console.log('🚀 ~ popstate evt:', evt)
+  // console.log('🚀 ~ popstate evt:', evt)
   const pages = stack.pages
 
   const page = evt.state.usr as IPage
@@ -36,13 +36,13 @@ function _listen(evt: PopStateEvent) {
 
     if (findIndex > -1 && findIndex < pages.length - 1) {
       // 后退
-      console.log('🚀 ~ 后退')
+      // console.log('🚀 ~ 后退')
       // pages里还存在着 有这个stamp的page，就 stack.backPage
       // There are still pages with this stamp in the pages, just stack.backPage
       stack.backPage(-(pages.length - 1 - findIndex))
     } else {
       // 前进
-      console.log('🚀 ~ 前进')
+      // console.log('🚀 ~ 前进')
       // pages里已经没有了，就 statck.pushPage
       // There are no more pages, just statck.pushPage
       stack.pushPage(page)
