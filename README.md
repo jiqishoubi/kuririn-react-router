@@ -3,23 +3,25 @@
   <h1 align="center">Welcome to kuririn-react-router</h1>
 </p>
 
-kuririn-react-router 是一个用于 H5 的路由库，它可以模拟 App（或小程序） 中页面栈的效果，实现页面的前进、后退、跳转，支持浏览器的前进、后退按钮
+English | [简体中文](https://github.com/jiqishoubi/kuririn-react-router/blob/master/README.zh-CN.md)
 
-## 演示
+Kuririn repeat router is a routing library for H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons
 
-例子中，index 是一级页面,detail1 是 二级页面，detail2 是 三级页面
+## Demo
 
-[演示 gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ef290dad56a4ee290fd6309b6d85cc1~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2028&h=1608&s=11646572&e=gif&f=1640&b=24241e)
+In the example, `index` is the first level page, `detail1` is the second level page, and `detail2` is the third level page
+
+[demo gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ef290dad56a4ee290fd6309b6d85cc1~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2028&h=1608&s=11646572&e=gif&f=1640&b=24241e)
 
 ## KRoutes
 
 ### Props
 
-| 属性        | 说明              | 类型                  | 默认值    |
-| ----------- | ----------------- | --------------------- | --------- |
-| historyType | 路由方式          | `'hash' \| 'browser'` | 'browser' |
-| pages       | 全部的页面        | `IPageItem[]`         | -         |
-| page404     | 可以传入 404 页面 |                       | -         |
+| 属性        | 说明                           | 类型                  | 默认值    |
+| ----------- | ------------------------------ | --------------------- | --------- |
+| historyType |                                | `'hash' \| 'browser'` | 'browser' |
+| pages       | All pages                      | `IPageItem[]`         | -         |
+| page404     | Can pass in 404 page component |                       | -         |
 
 ```ts
 export interface IPageItem {
@@ -29,7 +31,7 @@ export interface IPageItem {
 }
 ```
 
-入口文件`App.tsx`
+Entry file `App.tsx`
 
 ```tsx
 import { KRoutes } from 'kuririn-react-router'
@@ -80,6 +82,6 @@ router.switchTab('/')
 router.switchTab('/wode')
 ```
 
-## 注
+## Remark
 
-这个包依赖 react、mobx、mobx-react，所以请确保你的项目中已经安装了这些包。
+This package depends on React, mobx, and mobx-react, so please ensure that these packages are already installed in your project
