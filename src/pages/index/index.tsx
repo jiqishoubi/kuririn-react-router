@@ -14,11 +14,11 @@ const Index: React.FC = (props) => {
   }, [])
 
   onPageShow(props, () => {
-    console.log('🚀 ~ ', 'index 页面show了')
+    console.log('🚀 ~ ', 'index page show')
   })
 
   onPageHide(props, () => {
-    console.log('🚀 ~ ', 'index 页面hide了')
+    console.log('🚀 ~ ', 'index page hide')
   })
 
   return (
@@ -40,7 +40,7 @@ const Index: React.FC = (props) => {
       >
         box
       </div>
-      {/* <div className="list">
+      <div className="list">
         {list.map((_, index) => (
           <div
             key={index}
@@ -54,7 +54,7 @@ const Index: React.FC = (props) => {
             {index}
           </div>
         ))}
-      </div> */}
+      </div>
       <button
         onClick={() => {
           router.push('/detail1')
