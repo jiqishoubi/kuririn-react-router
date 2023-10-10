@@ -5,7 +5,7 @@
 
 English | [简体中文](https://github.com/jiqishoubi/kuririn-react-router/blob/master/README.zh-CN.md)
 
-Kuririn repeat router is a routing library for H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons
+Kuririn-react-router is a routing library for H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons
 
 ## Demo
 
