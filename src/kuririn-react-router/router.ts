@@ -6,13 +6,14 @@ const history_bak = createBrowserHistory()
 
 export type IHistoryType = 'hash' | 'browser'
 
+// global variable
 export const kdata: {
   historyType?: IHistoryType
   history?: BrowserHistory | HashHistory
   allPageItems?: IPageItem[]
 } = {}
 
-export function setKData({ historyType, allPageItems }: { historyType: IHistoryType; allPageItems: IPageItem[] }) {
+export function initKData({ historyType, allPageItems }: { historyType: IHistoryType; allPageItems: IPageItem[] }) {
   if (!kdata.history) {
     kdata.historyType = historyType
     kdata.history = historyType === 'hash' ? createHashHistory() : createBrowserHistory()
@@ -20,11 +21,12 @@ export function setKData({ historyType, allPageItems }: { historyType: IHistoryT
   }
 }
 
-export function getHistory() {
+export function gethistory() {
   return kdata.history! || history_bak
 }
 
 // 根据url获取page data
+// Obtain page data based on the URL
 export function getPage(url: string, params: Partial<IPage> = {}): IPage {
   const stamp = new Date().getTime()
   const pathname = url.split('?')[0]
@@ -34,15 +36,30 @@ export function getPage(url: string, params: Partial<IPage> = {}): IPage {
     pathname: pathname,
     search: url.split('?')[1] || '',
     url: url,
-    ...(isTab ? { isTab: true, isTabActive: true } : {}),
+    ...(isTab ? { isTab: true } : {}),
     ...params,
   }
 }
 
+export function getPathname() {
+  return gethistory().location.pathname || window.location.pathname
+}
+
+export function getUrl() {
+  return gethistory().location.pathname + gethistory().location.search
+}
+
+/**
+ * ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ * router functions
+ * 1. fisrt handle router
+ * 2. second handle pages data(by stack)
+ */
+
 function handlePush(url: string) {
   const page = getPage(url)
 
-  getHistory().push(url, page)
+  gethistory().push(url, page)
   stack.pushPage(page)
 }
 
@@ -51,17 +68,28 @@ function handlePush(url: string) {
  * back只是触发history的back，进而触发popstate,在popstate中去操作stack
  */
 function handleBack(n: number = -1) {
-  getHistory().go(n)
+  gethistory().go(n)
 }
 
 function handleSwitchTab(url: string) {
   const page = getPage(url, { isTabActive: true })
 
-  getHistory().replace(url)
+  gethistory().replace(url)
   stack.switchPage(page)
 }
 
+function handleFisrtPage(url: string) {
+  const pathname = url.split('?')[0]
+  const isTab = kdata.allPageItems?.some((page) => page.path === pathname && page.isTab)
+  if (isTab) {
+    router.switchTab(url)
+  } else {
+    router.push(url)
+  }
+}
+
 const router = {
+  fisrtPage: handleFisrtPage, // KRoutes fisrt mounted 执行
   push: handlePush,
   back: handleBack,
   switchTab: handleSwitchTab,

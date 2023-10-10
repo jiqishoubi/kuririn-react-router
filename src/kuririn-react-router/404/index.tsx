@@ -5,7 +5,7 @@ const Index: React.FC = () => {
     <div
       style={{
         textAlign: 'center',
-        paddingTop: 40,
+        paddingTop: 20,
       }}
     >
       404
