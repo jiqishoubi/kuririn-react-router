@@ -11,7 +11,7 @@ Kuririn-react-router is a routing library for H5 that can simulate the effect of
 
 In the example, `index` is the first level page, `detail1` is the second level page, and `detail2` is the third level page
 
-[demo gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ef290dad56a4ee290fd6309b6d85cc1~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2028&h=1608&s=11646572&e=gif&f=1640&b=24241e)
+[demo gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo.gif)
 
 ## KRoutes
 
