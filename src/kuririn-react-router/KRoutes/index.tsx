@@ -56,8 +56,9 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
 
   return (
     <>
-      {pages.map((page, index) => {
-        const key = `_${index}_${page.url}`
+      {pages.map((page) => {
+        const key = `_k_${page.url}`
+        const classNameStr = '_kuririn_react_router_page' + (page.isTab ? ' _kuririn_react_router_page_tab' : '')
 
         const isKBlock = (() => {
           if (curPageItem) {
@@ -74,7 +75,7 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
           <div
             key={key}
             id={key}
-            className="_kuririn_react_router_page"
+            className={classNameStr}
             style={{
               overflow: 'auto',
               height: '100vh',

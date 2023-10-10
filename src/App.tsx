@@ -9,7 +9,7 @@ function App() {
     <>
       <KRoutes
         pages={[
-          { path: '/index', component: PageIndex, isTab: true },
+          { path: '/', component: PageIndex, isTab: true },
           { path: '/detail1', component: PageDetail1 },
           { path: '/detail2', component: PageDetail2 },
           { path: '/detail2', component: PageDetail2 },
@@ -26,7 +26,7 @@ function App() {
       >
         <button
           onClick={() => {
-            router.switchTab('/index')
+            router.switchTab('/')
           }}
         >
           首页
