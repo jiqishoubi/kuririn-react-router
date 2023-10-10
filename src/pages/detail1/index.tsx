@@ -8,7 +8,8 @@ const Index: React.FC = () => {
       <div>
         <button
           onClick={() => {
-            router.push('/detail2')
+            // router.push('/detail2')
+            router.replace('/detail2')
           }}
         >
           go detail2

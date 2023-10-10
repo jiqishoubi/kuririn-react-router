@@ -88,11 +88,20 @@ function handleFisrtPage(url: string) {
   }
 }
 
+function handleReplace(url: string) {
+  const page = getPage(url)
+
+  const curPathname = getPathname()
+  gethistory().replace(url, page)
+  stack.replacePage(curPathname, page)
+}
+
 const router = {
-  fisrtPage: handleFisrtPage, // KRoutes fisrt mounted 执行
+  _fisrtPage: handleFisrtPage, // KRoutes fisrt mounted 执行
   push: handlePush,
   back: handleBack,
   switchTab: handleSwitchTab,
+  replace: handleReplace,
 }
 
 export default router

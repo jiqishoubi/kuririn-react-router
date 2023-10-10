@@ -60,6 +60,14 @@ class Stack {
       })
     }
   }
+  // replace page
+  replacePage(curPathname: string, p: IPage) {
+    const index = this.pages.findIndex((page) => page.pathname === curPathname)
+    console.log('🚀 ~ index:', index)
+    if (index > -1) {
+      this.pages[index] = p
+    }
+  }
 }
 
 const stack = new Stack()

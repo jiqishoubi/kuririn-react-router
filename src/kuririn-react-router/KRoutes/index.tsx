@@ -46,7 +46,7 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
 
   const pathname = getPathname()
   const pages = stack.pages
-  // console.log('🚀 ~ pages:', cloneDeep(pages))
+  console.log('🚀 ~ 页面栈 pages:', cloneDeep(pages))
 
   const curPageItem = useMemo(() => allPageItems.find((pageItem) => pageItem.path === pathname), [allPageItems, pathname])
 

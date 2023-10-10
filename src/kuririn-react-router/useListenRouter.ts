@@ -10,12 +10,15 @@ import throttle from 'lodash/throttle'
  * This is the pop state event triggered by browser forward and backward, routing changes, so there is no need to handle the router, just handle the pages data in the stack
  */
 function _listen(evt: PopStateEvent) {
-  // console.log('🚀 ~ pop evt:', evt)
+  console.log('🚀 ~ popstate evt:', evt)
   const pages = stack.pages
 
   const page = evt.state.usr as IPage
 
-  // 操作stack
+  /**
+   * Operate stack
+   * This `page` is the one you will be going to
+   */
   function handle(page: IPage) {
     if (page.isTab) {
       stack.switchPage(page)
@@ -25,17 +28,21 @@ function _listen(evt: PopStateEvent) {
     // ↓
     // 判断前进还是后退
 
-    const findIndex = pages.findIndex((p) => p.stamp === page.stamp || p.pathname === page.pathname)
+    const findIndex = pages.findIndex((p) => {
+      return (
+        p.stamp === page.stamp //
+      )
+    })
 
     if (findIndex > -1 && findIndex < pages.length - 1) {
       // 后退
-      // console.log('🚀 ~ 后退')
+      console.log('🚀 ~ 后退')
       // pages里还存在着 有这个stamp的page，就 stack.backPage
       // There are still pages with this stamp in the pages, just stack.backPage
       stack.backPage(-(pages.length - 1 - findIndex))
     } else {
       // 前进
-      // console.log('🚀 ~ 前进')
+      console.log('🚀 ~ 前进')
       // pages里已经没有了，就 statck.pushPage
       // There are no more pages, just statck.pushPage
       stack.pushPage(page)
@@ -65,7 +72,7 @@ export default function useListenRouter() {
   useEffect(() => {
     // go first page
     const url = getUrl()
-    router.fisrtPage(url)
+    router._fisrtPage(url)
 
     // listen
     window.addEventListener('popstate', listenFunc, false)
