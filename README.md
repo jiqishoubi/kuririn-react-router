@@ -11,7 +11,7 @@ Kuririn-react-router is a routing library for mobile H5 that can simulate the ef
 
 In the example, `index` is the first level page, `detail1` is the second level page, and `detail2` is the third level page
 
-[Demo gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo.gif)
+[Demo gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo_01.gif)
 
 [Demo code](https://github.com/jiqishoubi/kuririn-react-router)
 
