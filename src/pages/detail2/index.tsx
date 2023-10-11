@@ -4,14 +4,17 @@ import { router } from '@/kuririn-react-router'
 const Index: React.FC = () => {
   return (
     <>
-      detail2
-      <button
-        onClick={() => {
-          router.back()
-        }}
-      >
-        back
-      </button>
+      <h2 style={{ marginBottom: 10 }}>detail2 page</h2>
+
+      <div style={{ marginBottom: 10 }}>
+        <button
+          onClick={() => {
+            router.back()
+          }}
+        >
+          go back
+        </button>
+      </div>
     </>
   )
 }

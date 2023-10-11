@@ -11,6 +11,8 @@ kuririn-react-router 是一个用于 H5 的路由库，它可以模拟 App（或
 
 [演示 gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo.gif)
 
+[演示 代码](https://github.com/jiqishoubi/kuririn-react-router)
+
 ## KRoutes
 
 ### Props
@@ -36,14 +38,17 @@ import { KRoutes } from 'kuririn-react-router'
 import PageIndex from '@/pages/index/index'
 import PageDetail1 from '@/pages/detail1/index'
 import PageDetail2 from '@/pages/detail2/index'
+import PageUserIndex from '@/pages/user/index/index'
 
 function App() {
   return (
     <KRoutes
       pages={[
-        { path: '/', component: PageIndex },
+        { path: '/', component: PageIndex, isTab: true },
         { path: '/detail1', component: PageDetail1 },
         { path: '/detail2', component: PageDetail2 },
+        { path: '/detail2', component: PageDetail2 },
+        { path: '/user', component: PageUserIndex, isTab: true },
       ]}
     />
   )
@@ -77,7 +82,7 @@ router.replace('/detail2')
 
 ```ts
 router.switchTab('/')
-router.switchTab('/wode')
+router.switchTab('/user')
 ```
 
 ## 注

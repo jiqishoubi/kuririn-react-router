@@ -23,52 +23,53 @@ const Index: React.FC = (props) => {
 
   return (
     <>
-      <div>
-        <input
-          value={inputValue}
-          onChange={(e) => {
-            setInputValue(e.target.value)
+      <h2 style={{ marginBottom: 10 }}>Index page</h2>
+
+      <div style={{ marginBottom: 10 }}>
+        <div
+          style={{
+            display: 'flex',
           }}
-        />
-      </div>
-      index
-      <div
-        style={{
-          height: 100,
-          backgroundColor: 'red',
-        }}
-      >
-        box
-      </div>
-      <div className="list">
-        {list.map((_, index) => (
-          <div
-            key={index}
-            className="item"
-            style={{
-              height: 30,
-              backgroundColor: 'green',
-              margin: 5,
+        >
+          <label>Input: </label>
+          <input
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value)
             }}
-          >
-            {index}
-          </div>
-        ))}
+            style={{
+              height: 25,
+            }}
+          />
+        </div>
       </div>
-      <button
-        onClick={() => {
-          router.push('/detail1')
-        }}
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          right: 0,
-          width: 100,
-          height: 100,
-        }}
-      >
-        go detail1
-      </button>
+
+      <div style={{ marginBottom: 10 }}>
+        <button
+          onClick={() => {
+            router.push('/detail1')
+          }}
+        >
+          push detail1 page
+        </button>
+      </div>
+
+      <div className="list">
+        <div>mock list: </div>
+        <ol>
+          {list.map((_, index) => (
+            <li
+              key={index}
+              style={{
+                margin: '3px 0',
+                borderBottom: '1px solid #eee',
+              }}
+            >
+              {index}
+            </li>
+          ))}
+        </ol>
+      </div>
     </>
   )
 }

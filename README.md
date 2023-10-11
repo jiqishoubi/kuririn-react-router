@@ -11,7 +11,9 @@ Kuririn-react-router is a routing library for H5 that can simulate the effect of
 
 In the example, `index` is the first level page, `detail1` is the second level page, and `detail2` is the third level page
 
-[demo gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo.gif)
+[Demo gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo.gif)
+
+[Demo code](https://github.com/jiqishoubi/kuririn-react-router)
 
 ## KRoutes
 
@@ -38,14 +40,17 @@ import { KRoutes } from 'kuririn-react-router'
 import PageIndex from '@/pages/index/index'
 import PageDetail1 from '@/pages/detail1/index'
 import PageDetail2 from '@/pages/detail2/index'
+import PageUserIndex from '@/pages/user/index/index'
 
 function App() {
   return (
     <KRoutes
       pages={[
-        { path: '/', component: PageIndex },
+        { path: '/', component: PageIndex, isTab: true },
         { path: '/detail1', component: PageDetail1 },
         { path: '/detail2', component: PageDetail2 },
+        { path: '/detail2', component: PageDetail2 },
+        { path: '/user', component: PageUserIndex, isTab: true },
       ]}
     />
   )
@@ -79,7 +84,7 @@ router.replace('/detail2')
 
 ```ts
 router.switchTab('/')
-router.switchTab('/wode')
+router.switchTab('/user')
 ```
 
 ## Remark
