@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/jiqishoubi/kuririn-react-router"
   },
-  "description": "a routing library for H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons",
+  "description": "a routing library for mobile H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -54,9 +54,11 @@
     "dist"
   ],
   "keywords": [
-    "H5",
+    "mobile",
+    "pages",
     "stack",
     "router",
-    "react"
+    "react",
+    "H5"
   ]
 }
