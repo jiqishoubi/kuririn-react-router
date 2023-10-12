@@ -42,6 +42,7 @@ export default defineConfig({
         'react-dom',
         'mobx',
         'mobx-react',
+        'history',
       ], // 确保外部化处理那些你不想打包进库的依赖
       output: [
         {
