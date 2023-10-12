@@ -36,7 +36,13 @@ export default defineConfig({
     },
     emptyOutDir: true,
     rollupOptions: {
-      external: ['react', 'mobx', 'mobx-react'], // 确保外部化处理那些你不想打包进库的依赖
+      external: [
+        'react',
+        'react/jsx-runtime', //
+        'react-dom',
+        'mobx',
+        'mobx-react',
+      ], // 确保外部化处理那些你不想打包进库的依赖
       output: [
         {
           format: 'es',

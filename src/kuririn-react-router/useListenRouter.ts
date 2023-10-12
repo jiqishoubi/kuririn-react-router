@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import router, { gethistory, getPage, getPathname, getUrl } from './router'
 import stack, { IPage } from './stack'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
 import throttle from 'lodash/throttle'
 
 /**

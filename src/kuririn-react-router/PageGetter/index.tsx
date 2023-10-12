@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { IPage } from '../stack'
 import { IPageItemComponent, IKRoutesProps } from '../KRoutes'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
 import { kdata } from '../router'
 
 const PageGetter: React.FC<{
