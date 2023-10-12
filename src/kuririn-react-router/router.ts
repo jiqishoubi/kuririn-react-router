@@ -88,6 +88,7 @@ function handleFisrtPage(url: string) {
     // here cannot use router.push(url), because fisrt page will trigger history's popstate
     // directly operate stack
     const page = getPage(url)
+    gethistory().replace(url, page) // if don't replace, the fisrt state.stamp will not push to stack
     stack.pushPage(page)
   }
 }

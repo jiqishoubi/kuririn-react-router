@@ -27,6 +27,7 @@ function _listen(evt: PopStateEvent) {
 
     // ↓
     // 判断前进还是后退
+    // console.log('🚀 ~ 判断前进还是后退 pages', cloneDeep(pages))
 
     const findIndex = pages.findIndex((p) => {
       return (
