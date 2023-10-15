@@ -1,6 +1,10 @@
 import React, { CSSProperties, PropsWithChildren } from 'react'
-import { IPage } from '../stack'
-import { IPageItemComponent } from '../KRoutes'
+import { IPage } from '../store'
+
+const defaltPageStyle: CSSProperties = {
+  overflow: 'auto',
+  height: '100vh',
+}
 
 const KPage: React.FC<
   PropsWithChildren<{
@@ -12,10 +16,6 @@ const KPage: React.FC<
 
   const key = `_k_${page.url}`
   const classNameStr = '_kuririn_react_router_page' + (page.isTab ? ' _kuririn_react_router_page_tab' : '')
-  const defaltPageStyle: CSSProperties = {
-    overflow: 'auto',
-    height: '100vh',
-  }
 
   return (
     <div

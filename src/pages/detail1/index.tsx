@@ -1,7 +1,8 @@
 import React from 'react'
-import { router } from '@/kuririn-react-router'
+import { useRouter } from '@/kuririn-react-router'
 
 const Index: React.FC = () => {
+  const router = useRouter()
   return (
     <>
       <h2 style={{ marginBottom: 10 }}>detail1 page</h2>

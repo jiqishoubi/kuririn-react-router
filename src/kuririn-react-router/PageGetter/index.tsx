@@ -1,17 +1,15 @@
-import React, { useEffect, useMemo } from 'react'
-import { IPage } from '../stack'
-import { IPageItemComponent, IKRoutesProps } from '../KRoutes'
-// import cloneDeep from 'lodash/cloneDeep'
-import { kdata } from '../router'
+import React, { useContext, useEffect, useMemo } from 'react'
+import { IPage, KContent } from '../store'
 
 const PageGetter: React.FC<{
   page: IPage
   isKBlock: boolean
-  page404: IPageItemComponent
-}> = (pros) => {
-  const { page, page404, isKBlock } = pros
+}> = (props) => {
+  const { page, isKBlock } = props
 
-  const allPageItems = kdata.allPageItems || []
+  const {
+    state: { allPageItems, page404 },
+  } = useContext(KContent)
 
   const PageComponent = useMemo(() => {
     const pathname = page.pathname
@@ -28,10 +26,9 @@ const PageGetter: React.FC<{
       }
       return findPageItem?.component || page404
     }
-  }, [page])
+  }, [allPageItems, page])
 
-  // The props on the page will have the isKBlock attribute
-  // @ts-ignore
   return <PageComponent isKBlock={isKBlock} />
+  // return PageComponent
 }
 export default PageGetter

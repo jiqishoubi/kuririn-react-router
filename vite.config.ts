@@ -40,9 +40,8 @@ export default defineConfig({
         'react',
         'react/jsx-runtime', //
         'react-dom',
-        'mobx',
-        'mobx-react',
         'history',
+        'immer',
       ], // 确保外部化处理那些你不想打包进库的依赖
       output: [
         {

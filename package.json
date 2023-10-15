@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/jiqishoubi/kuririn-react-router"
   },
-  "description": "a routing library for mobile H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons",
+  "description": "a pages stack library for mobile H5 that can simulate the effect of page stacks in apps (or mini programs), achieve page push, back, and replace, and support browser forward and backward buttons",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -20,38 +20,32 @@
     "pub": "npm run build && npm version patch && npm publish"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "mobx": "^6.10.2",
-    "mobx-react": "^9.0.1",
-    "history": "^5.3.0"
+    "history": "^5.0.0",
+    "immer": "^10.0.3",
+    "react": "^18.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.3",
     "@types/history": "^5.0.0",
     "@types/lodash": "^4.14.199",
     "@types/node": "^20.8.3",
-    "ahooks": "^3.7.8",
-    "axios": "^1.5.1",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
     "classnames": "^2.3.2",
-    "dayjs": "^1.11.10",
     "husky": "^8.0.3",
     "less": "^4.2.0",
     "lint-staged": "^14.0.1",
     "lodash": "^4.17.21",
     "prettier": "^2.5.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.6.0"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "mobx": ">=6.0.0",
-    "mobx-react": ">=7.0.0",
-    "history": ">=5.0.0"
+    "history": ">=5.0.0",
+    "immer": ">=5.0.0",
+    "react": ">=16.9.0"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,vue,css,less,scss,md,json}": "prettier --write"

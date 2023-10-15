@@ -1,58 +1,23 @@
-/// Entry file
-import React, { CSSProperties, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import PageGetter from '../PageGetter'
-import { observer } from 'mobx-react'
-import stack, { IPage } from '../stack'
-import useListenRouter from '../useListenRouter'
-// import cloneDeep from 'lodash/cloneDeep'
-import { IHistoryType, getPathname, gethistory, initKData } from '../router'
 import KPage from '../KPage'
-import Page404 from '../404'
+import { IPage, KContent } from '../store'
 
-export type IPageItemComponent = any // React.FC<any> | React.ComponentClass | React.ComponentType | React.ReactElement
+const KRoutes: React.FC = (props) => {
+  const {
+    state: { allPageItems, pages, history, page404: ComponentPage404 },
+  } = useContext(KContent)
 
-// 传给KRoutes的pages的每一项
-// Each item of the pages passed to KRoutes
-export interface IPageItem {
-  path: string
-  component: IPageItemComponent
-  isTab?: boolean
-}
+  const pathname = history.location.pathname
 
-export interface IKRoutesProps {
-  historyType?: IHistoryType
-  pages: IPageItem[]
-  page404?: IPageItemComponent
-}
-
-/**
- *
- * @description Entrance component
- */
-const KRoutes: React.FC<IKRoutesProps> = (props) => {
-  const { historyType = 'browser', pages: allPageItems, page404 } = props
-
-  // 初始化 传进来的一些值
-  // Initialize some values passed in
-  initKData({
-    historyType,
-    allPageItems,
-  })
-
-  useListenRouter() // to listen history
-  // init end
-
-  const _page404 = page404 || Page404
-
-  const pathname = getPathname()
-  const pages = stack.pages
-  // console.log('🚀 ~ pages data stack:', cloneDeep(pages))
+  // console.log("🚀 ~ allPageItems:", allPageItems)
+  // console.log('🚀 ~ pages:', pages)
 
   const curPageItem = useMemo(() => allPageItems.find((pageItem) => pageItem.path === pathname), [allPageItems, pathname])
 
   // 分离出pages data 中的，tabPages和normalPages
   // Separate tabPages and normalPages from the pages data
-  const pagesRes = (() => {
+  const pagesRes = useMemo(() => {
     let tabPages: IPage[] = []
     let normalPages: IPage[] = []
     pages.forEach((page) => {
@@ -66,7 +31,7 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
       tabPages,
       normalPages,
     }
-  })()
+  }, [pages])
 
   return (
     <div
@@ -77,7 +42,7 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
       }}
     >
       {!curPageItem ? (
-        <_page404 />
+        <ComponentPage404 />
       ) : (
         pages.map((page) => {
           const key = `_k_${page.url}`
@@ -95,18 +60,8 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
           })()
 
           return (
-            <KPage
-              //
-              key={key}
-              page={page}
-              isKBlock={isKBlock}
-            >
-              <PageGetter
-                //
-                page={page}
-                page404={_page404}
-                isKBlock={isKBlock}
-              />
+            <KPage key={key} page={page} isKBlock={isKBlock}>
+              <PageGetter page={page} isKBlock={isKBlock} />
             </KPage>
           )
         })
@@ -115,4 +70,4 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
   )
 }
 
-export default observer(KRoutes)
+export default KRoutes

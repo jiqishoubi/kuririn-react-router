@@ -13,15 +13,16 @@ kuririn-react-router 是一个用于 H5 的路由库，它可以模拟 App（或
 
 [演示 代码](https://github.com/jiqishoubi/kuririn-react-router)
 
-## KRoutes
+## KRouter
 
 ### Props
 
-| 属性        | 说明              | 类型                  | 默认值    |
-| ----------- | ----------------- | --------------------- | --------- |
-| historyType | 路由方式          | `'hash' \| 'browser'` | 'browser' |
-| pages       | 全部的页面        | `IPageItem[]`         | -         |
-| page404     | 可以传入 404 页面 |                       | -         |
+| 属性        | 说明                        | 类型                  | 是否必填 | 默认值    |
+| ----------- | --------------------------- | --------------------- | -------- | --------- |
+| historyType | 路由方式                    | `'hash' \| 'browser'` | false    | 'browser' |
+| pages       | 全部的页面                  | `IPageItem[]`         | true     | -         |
+| page404     | 可以传入 404 页面           |                       | false    | -         |
+| lazyLoading | page 懒加载的时候的 loading | `React.ReactNode`     | false    | -         |
 
 ```ts
 export interface IPageItem {
@@ -34,30 +35,41 @@ export interface IPageItem {
 入口文件`App.tsx`
 
 ```tsx
-import { KRoutes } from 'kuririn-react-router'
-import PageIndex from '@/pages/index/index'
+import { KRouter } from '@/kuririn-react-router'
+import TabBar from '@/TabBar'
 import PageDetail1 from '@/pages/detail1/index'
 import PageDetail2 from '@/pages/detail2/index'
 import PageUserIndex from '@/pages/user/index/index'
+import { lazy } from 'react'
+
+const PageIndex = lazy(() => import('@/pages/index/index'))
 
 function App() {
   return (
-    <KRoutes
-      pages={[
-        { path: '/', component: PageIndex, isTab: true },
-        { path: '/detail1', component: PageDetail1 },
-        { path: '/detail2', component: PageDetail2 },
-        { path: '/detail2', component: PageDetail2 },
-        { path: '/user', component: PageUserIndex, isTab: true },
-      ]}
-    />
+    <>
+      <KRouter
+        pages={[
+          { path: '/', component: PageIndex, isTab: true },
+          { path: '/detail1', component: PageDetail1 },
+          { path: '/detail2', component: PageDetail2 },
+          { path: '/detail2', component: PageDetail2 },
+          { path: '/user', component: PageUserIndex, isTab: true },
+        ]}
+      >
+        <TabBar />
+      </KRouter>
+    </>
   )
 }
+
+export default App
 ```
 
-## Router
+## useRouter
 
-`import { router } from 'kuririn-react-router'`
+`import { useRouter } from 'kuririn-react-router'`
+
+`const router = useRouter()`
 
 ### router.push
 
@@ -85,6 +97,16 @@ router.switchTab('/')
 router.switchTab('/user')
 ```
 
-## 注
+## onPageShow、onPageHide
 
-这个包依赖 react、mobx、mobx-react，所以请确保你的项目中已经安装了这些包。
+```tsx
+import { onPageShow, onPageHide } from 'kuririn-react-router'
+
+onPageShow(props, () => {
+  console.log('🚀 ~ ', 'index page show')
+})
+
+onPageHide(props, () => {
+  console.log('🚀 ~ ', 'index page hide')
+})
+```

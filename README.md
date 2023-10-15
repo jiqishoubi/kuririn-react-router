@@ -15,15 +15,16 @@ In the example, `index` is the first level page, `detail1` is the second level p
 
 [Demo code](https://github.com/jiqishoubi/kuririn-react-router)
 
-## KRoutes
+## KRouter
 
 ### Props
 
-| 属性        | 说明                           | 类型                  | 默认值    |
-| ----------- | ------------------------------ | --------------------- | --------- |
-| historyType |                                | `'hash' \| 'browser'` | 'browser' |
-| pages       | All pages                      | `IPageItem[]`         | -         |
-| page404     | Can pass in 404 page component |                       | -         |
+| prop        | description            | type                  | required | default   |
+| ----------- | ---------------------- | --------------------- | -------- | --------- |
+| historyType |                        | `'hash' \| 'browser'` | false    | 'browser' |
+| pages       | all page items         | `IPageItem[]`         | true     | -         |
+| page404     | 404 component          |                       | false    | -         |
+| lazyLoading | lazy loading component | `React.ReactNode`     | false    | -         |
 
 ```ts
 export interface IPageItem {
@@ -36,30 +37,41 @@ export interface IPageItem {
 Entry file `App.tsx`
 
 ```tsx
-import { KRoutes } from 'kuririn-react-router'
-import PageIndex from '@/pages/index/index'
+import { KRouter } from '@/kuririn-react-router'
+import TabBar from '@/TabBar'
 import PageDetail1 from '@/pages/detail1/index'
 import PageDetail2 from '@/pages/detail2/index'
 import PageUserIndex from '@/pages/user/index/index'
+import { lazy } from 'react'
+
+const PageIndex = lazy(() => import('@/pages/index/index'))
 
 function App() {
   return (
-    <KRoutes
-      pages={[
-        { path: '/', component: PageIndex, isTab: true },
-        { path: '/detail1', component: PageDetail1 },
-        { path: '/detail2', component: PageDetail2 },
-        { path: '/detail2', component: PageDetail2 },
-        { path: '/user', component: PageUserIndex, isTab: true },
-      ]}
-    />
+    <>
+      <KRouter
+        pages={[
+          { path: '/', component: PageIndex, isTab: true },
+          { path: '/detail1', component: PageDetail1 },
+          { path: '/detail2', component: PageDetail2 },
+          { path: '/detail2', component: PageDetail2 },
+          { path: '/user', component: PageUserIndex, isTab: true },
+        ]}
+      >
+        <TabBar />
+      </KRouter>
+    </>
   )
 }
+
+export default App
 ```
 
-## Router
+## useRouter
 
-`import { router } from 'kuririn-react-router'`
+`import { useRouter } from 'kuririn-react-router'`
+
+`const router = useRouter()`
 
 ### router.push
 
@@ -87,6 +99,16 @@ router.switchTab('/')
 router.switchTab('/user')
 ```
 
-## Remark
+## onPageShow、onPageHide
 
-This package depends on React, mobx, and mobx-react, so please ensure that these packages are already installed in your project
+```tsx
+import { onPageShow, onPageHide } from 'kuririn-react-router'
+
+onPageShow(props, () => {
+  console.log('🚀 ~ ', 'index page show')
+})
+
+onPageHide(props, () => {
+  console.log('🚀 ~ ', 'index page hide')
+})
+```

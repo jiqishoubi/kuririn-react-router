@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { router, onPageShow, onPageHide } from '@/kuririn-react-router'
+import { onPageShow, onPageHide, useRouter } from '@/kuririn-react-router'
 
 const Index: React.FC = (props) => {
+  // console.log("🚀 ~ index page props:", props)
+  const router = useRouter()
   const [inputValue, setInputValue] = useState<string>('')
   const [list, setList] = useState<any[]>([])
 
