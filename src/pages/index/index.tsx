@@ -35,7 +35,7 @@ const Index: React.FC = (props) => {
             display: 'flex',
           }}
         >
-          <label>input: </label>
+          <label>input: &nbsp;</label>
           <input
             value={inputValue}
             onChange={(e) => {

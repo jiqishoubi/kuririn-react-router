@@ -31,6 +31,7 @@ export default function useRouter() {
   }
 
   function handleSwitchTab(url: string) {
+    if (history.location.pathname === url) return
     const page = getPage(allPageItems, url)
     history.replace(url)
     dispatch({ type: 'switch', payload: page })

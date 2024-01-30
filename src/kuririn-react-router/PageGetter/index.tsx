@@ -29,6 +29,5 @@ const PageGetter: React.FC<{
   }, [allPageItems, page])
 
   return <PageComponent isKBlock={isKBlock} />
-  // return PageComponent
 }
 export default PageGetter

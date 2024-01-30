@@ -26,7 +26,7 @@ export interface IKState {
   history: BrowserHistory | HashHistory
   allPageItems: IPageItem[]
   page404: any
-  pages: IPage[]
+  pages: IPage[] // 页面栈
 }
 
 export interface IKContext {
@@ -58,7 +58,6 @@ export type IKAction =
 /**
  * context
  */
-
 export const defaultInitialState: IKState = {
   historyType: 'browser',
   history: browserHistory,
@@ -191,7 +190,7 @@ export function reducer(state: IKState, action: IKAction): IKState {
  * @description get page data by url or pathname
  * @param allPageItems
  * @param url
- * @param params
+ * @param params // extra params for page data object (optional) eg: { isTab: true }
  * @returns
  */
 export function getPage(allPageItems: IPageItem[], url: string, params: Partial<IPage> = {}): IPage {

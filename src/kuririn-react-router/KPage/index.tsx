@@ -1,5 +1,6 @@
 import React, { CSSProperties, PropsWithChildren } from 'react'
 import { IPage } from '../store'
+import { getPageKey } from '../utils'
 
 const defaltPageStyle: CSSProperties = {
   overflow: 'auto',
@@ -14,7 +15,7 @@ const KPage: React.FC<
 > = (props) => {
   const { children, page, isKBlock } = props
 
-  const key = `_k_${page.url}`
+  const key = getPageKey(page)
   const classNameStr = '_kuririn_react_router_page' + (page.isTab ? ' _kuririn_react_router_page_tab' : '')
 
   return (

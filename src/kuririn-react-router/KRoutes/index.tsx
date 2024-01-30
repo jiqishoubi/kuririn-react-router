@@ -2,21 +2,29 @@ import React, { useContext, useMemo } from 'react'
 import PageGetter from '../PageGetter'
 import KPage from '../KPage'
 import { IPage, KContext } from '../store'
+import { getPageKey } from '../utils'
 
-interface IKRoutesProps {
+const k_pages_container_style: React.CSSProperties = {
+  height: '100%',
+  overflow: 'hidden',
+  position: 'relative',
+}
+
+export interface IKRoutesProps {
   children?: React.ReactNode
 }
 
 const KRoutes: React.FC<IKRoutesProps> = (props) => {
   const { children } = props
+
   const {
     state: { allPageItems, pages, history, page404: ComponentPage404 },
   } = useContext(KContext)
 
   const pathname = history.location.pathname
 
-  console.log('🚀 ~ allPageItems:', allPageItems)
-  console.log('🚀 ~ pages:', pages)
+  // console.log('🚀 ~ allPageItems:', allPageItems)
+  // console.log('🚀 ~ pages:', pages)
 
   const curPageItem = useMemo(() => allPageItems.find((pageItem) => pageItem.path === pathname), [allPageItems, pathname])
 
@@ -38,8 +46,6 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
     }
   }, [pages])
 
-  console.log('🚀 ~ pagesRes', pagesRes)
-
   return (
     <>
       {!curPageItem ? (
@@ -50,25 +56,19 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
             <div
               className="_k_pages_container _k_pages_container_tab"
               style={{
+                ...k_pages_container_style,
                 display: curPageItem.isTab ? 'block' : 'none',
-                position: 'relative',
                 zIndex: 1,
               }}
             >
               {pagesRes.tabPages.map((page) => {
-                const key = `_k_${page.url}`
+                const key = getPageKey(page)
 
-                const isKBlock = (() => {
-                  if (curPageItem.isTab) {
-                    // 当前访问的是tab页面
-                    // Currently accessing a tab page
-                    return !!(curPageItem.path === page.pathname && pagesRes.tabPages.find((tabPage) => tabPage.pathname === curPageItem?.path)?.isTabActive)
-                  } else {
-                    // 当前访问的是普通页面
-                    // Currently accessing a regular page
-                    return !!(curPageItem.path === page.pathname && pagesRes.normalPages[pagesRes.normalPages.length - 1]?.pathname === curPageItem?.path)
-                  }
-                })()
+                const isKBlock = !!(
+                  curPageItem.isTab && //
+                  curPageItem.path === page.pathname &&
+                  pagesRes.tabPages.find((tabPage) => tabPage.pathname === curPageItem?.path)?.isTabActive
+                )
 
                 return (
                   <KPage key={key} page={page} isKBlock={isKBlock}>
@@ -84,25 +84,19 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
             <div
               className="_k_pages_container _k_pages_container_normal"
               style={{
+                ...k_pages_container_style,
                 display: !curPageItem.isTab ? 'block' : 'none',
-                position: 'relative',
                 zIndex: 2,
               }}
             >
               {pagesRes.normalPages.map((page) => {
-                const key = `_k_${page.url}`
+                const key = getPageKey(page)
 
-                const isKBlock = (() => {
-                  if (curPageItem.isTab) {
-                    // 当前访问的是tab页面
-                    // Currently accessing a tab page
-                    return !!(curPageItem.path === page.pathname && pagesRes.tabPages.find((tabPage) => tabPage.pathname === curPageItem?.path)?.isTabActive)
-                  } else {
-                    // 当前访问的是普通页面
-                    // Currently accessing a regular page
-                    return !!(curPageItem.path === page.pathname && pagesRes.normalPages[pagesRes.normalPages.length - 1]?.pathname === curPageItem?.path)
-                  }
-                })()
+                const isKBlock = !!(
+                  !curPageItem.isTab && //
+                  curPageItem.path === page.pathname &&
+                  pagesRes.normalPages[pagesRes.normalPages.length - 1]?.pathname === curPageItem?.path
+                )
 
                 return (
                   <KPage key={key} page={page} isKBlock={isKBlock}>
