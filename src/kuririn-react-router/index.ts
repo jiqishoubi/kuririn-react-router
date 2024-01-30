@@ -1,11 +1,12 @@
 /**
- * 
- * 
-  IPageItem KRotues传进来的pages数组的每一项
-  IPage stack页面栈中的数据object
- * 
+ * 注：
+ * IPageItem KRotues传进来的pages数组的每一项
+ * IPage stack页面栈中的数据object
+ *
+ * remark:
+ * IPageItem is item of pages array passed in by KRotues
+ * IPage is data object in stack
  */
-///
 
 export { default as KRouter } from './KRouter'
 export * from './KRouter'

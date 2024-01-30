@@ -10,14 +10,14 @@ export type IPageItemComponent = any
 
 export interface IPageItem {
   path: string
-  pageTitle?: string
+  title?: string
   component: IPageItemComponent
   isTab?: boolean
 }
 
 export interface IKRouterProps {
   historyType?: IHistoryType
-  pages: IPageItem[]
+  pages: IPageItem[] //
   page404?: IPageItemComponent
   lazyLoading?: React.ReactNode
   children?: React.ReactNode // this children styles set position fixed
@@ -25,7 +25,7 @@ export interface IKRouterProps {
 }
 
 /**
- *
+ * @description KRouter this app entry component
  */
 const KRouter: React.FC<IKRouterProps> = (props) => {
   const { children, lazyLoading } = props

@@ -5,16 +5,14 @@ const Index: React.FC = () => {
   const router = useRouter()
   return (
     <>
-      <h2 style={{ marginBottom: 10 }}>User Tab Page</h2>
-
-      <div>this is user page, is a tab page</div>
+      <h2>User Sub Page</h2>
 
       <button
         onClick={() => {
-          router.push('/userSub')
+          router.back()
         }}
       >
-        go user subPage
+        go back
       </button>
     </>
   )

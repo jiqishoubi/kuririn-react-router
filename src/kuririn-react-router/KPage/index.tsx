@@ -1,7 +1,8 @@
 import React, { CSSProperties, PropsWithChildren, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { IPage } from '../store'
 import { getPageKey } from '../utils'
-import useDocumentFragmentCache from './useDocumentFragmentCache'
+import useDocumentFragmentCache from '../hooks/useDocumentFragmentCache'
+import useSetPageTitle from '../hooks/useSetPageTitle'
 
 const defaltPageStyle: CSSProperties = {
   height: '100%',
@@ -19,6 +20,7 @@ const KPage: React.FC<
   const key = getPageKey(page)
   const classNameStr = '_kuririn_react_router_page' + (page.isTab ? ' _kuririn_react_router_page_tab' : '')
 
+  useSetPageTitle(page, isKBlock)
   // 优化
   const scrollTopRef = useRef(0)
   useDocumentFragmentCache({ page, isKBlock, scrollTopRef })

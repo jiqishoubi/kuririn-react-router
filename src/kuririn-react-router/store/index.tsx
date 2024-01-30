@@ -2,7 +2,7 @@ import { createContext } from 'react'
 import { IKRouterProps, IPageItem } from '../KRouter'
 import { BrowserHistory, HashHistory, createBrowserHistory, createHashHistory } from 'history'
 import Page404 from '../404'
-import { getIsTab } from '../utils'
+import { getPage } from '../utils'
 import { IHistoryType } from '../hooks/useHistory'
 
 export const browserHistory = createBrowserHistory()
@@ -17,6 +17,7 @@ export interface IPage {
   pathname: string
   search: string
   url: string
+  title?: string
   isTab?: boolean
   isTabActive?: boolean
 }
@@ -75,6 +76,7 @@ export const KContext = createContext<IKContext>({
 
 export const KProvider = KContext.Provider
 
+// init state
 export function stateInitializer(defaultInitialState: IKState, props: IKRouterProps): IKState {
   const {
     historyType = 'browser', //
@@ -103,10 +105,11 @@ export function stateInitializer(defaultInitialState: IKState, props: IKRouterPr
   const _page404 = page404 || defaultInitialState.page404
 
   const url = history.location.pathname + history.location.search
-  const isTab = getIsTab(allPageItems, { url })
-  const page = getPage(allPageItems, url, {
-    ...(isTab ? { isTabActive: true } : {}),
-  })
+  const _page = getPage(allPageItems, url)
+  const page = {
+    ..._page,
+    ...(_page.isTab ? { isTabActive: true } : {}),
+  }
   history.replace(url, page)
 
   const pages = [page]
@@ -191,26 +194,5 @@ export function reducer(state: IKState, action: IKAction): IKState {
     default: {
       return state
     }
-  }
-}
-
-/**
- * @description get page data by url or pathname
- * @param allPageItems
- * @param url
- * @param params // extra params for page data object (optional) eg: { isTab: true }
- * @returns
- */
-export function getPage(allPageItems: IPageItem[], url: string, params: Partial<IPage> = {}): IPage {
-  const stamp = new Date().getTime()
-  const pathname = url.split('?')[0]
-  const isTab = getIsTab(allPageItems, { pathname })
-  return {
-    stamp: stamp,
-    pathname: pathname,
-    search: url.split('?')[1] || '',
-    url: url,
-    ...(isTab ? { isTab: true } : {}),
-    ...params,
   }
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { IPage, KContext } from '../store'
 
 const PageGetter: React.FC<{

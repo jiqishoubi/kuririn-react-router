@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef } from 'react'
 import throttle from 'lodash/throttle'
-import { IKAction, IKState, IPage, getPage } from '../store'
+import { IKAction, IKState, IPage } from '../store'
 import useLatest from './useLatest'
+import { getPage } from '../utils'
 
 /**
  *
@@ -21,8 +22,9 @@ export default function useListenRouter(state: IKState, dispatch: (action: IKAct
       (evt: PopStateEvent) => {
         // console.log('🚀 ~ popstate evt:', evt)
         const pages = stateRef.current.pages
-        // console.log('🚀 ~ pages:', pages)
         const page = evt.state.usr as IPage
+        // console.log('🚀 ~ pages:', pages)
+        // console.log(`🚀 ~ page:`, page)
 
         /**
          * Operate stack

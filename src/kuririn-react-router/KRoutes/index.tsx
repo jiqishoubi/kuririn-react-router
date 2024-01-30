@@ -51,6 +51,7 @@ const KRoutes: React.FC<IKRoutesProps> = (props) => {
       {!curPageItem ? (
         <ComponentPage404 />
       ) : (
+        // tab pages and normal pages will be rendered in different containers
         <>
           {pagesRes.tabPages.length > 0 && (
             <div
