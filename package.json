@@ -57,5 +57,8 @@
     "router",
     "react",
     "H5"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
