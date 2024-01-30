@@ -13,22 +13,25 @@ In the example, `index` is the first level page, `detail1` is the second level p
 
 [Demo gif](https://github.com/jiqishoubi/kuririn-react-router/blob/master/static/demo_01.gif)
 
-[Demo code](https://github.com/jiqishoubi/kuririn-react-router)
+[More detailed demonstration code example](https://github.com/jiqishoubi/kuririn-react-router)
 
 ## KRouter
 
 ### Props
 
-| prop        | description            | type                  | required | default   |
-| ----------- | ---------------------- | --------------------- | -------- | --------- |
-| historyType |                        | `'hash' \| 'browser'` | false    | 'browser' |
-| pages       | all page items         | `IPageItem[]`         | true     | -         |
-| page404     | 404 component          |                       | false    | -         |
-| lazyLoading | lazy loading component | `React.ReactNode`     | false    | -         |
+| prop                       | description                                                                                                | type                  | required | default   |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------- | -------- | --------- |
+| historyType                |                                                                                                            | `'hash' \| 'browser'` | false    | 'browser' |
+| pages                      | all page items                                                                                             | `IPageItem[]`         | true     | -         |
+| page404                    | 404 component                                                                                              |                       | false    | -         |
+| lazyLoading                | lazy loading component                                                                                     | `React.ReactNode`     | false    | -         |
+| children                   | Usually used to pass in Tabbar, it is a position fixed component                                           | `React.ReactNode`     | false    | -         |
+| closeDocumentFragmentCache | disable the optimization of document fragment caching on the page? This optimization is enabled by default | `boolean`             | false    | -         |
 
 ```ts
 export interface IPageItem {
   path: string
+  title?: string // Can affect document.title
   component: IPageItemComponent
   isTab?: boolean
 }
