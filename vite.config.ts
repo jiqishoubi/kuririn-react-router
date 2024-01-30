@@ -2,8 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import dts from 'vite-plugin-dts'
+import pkg from './package.json'
 
-// https://vitejs.dev/config/
+const _external = Object.keys({
+  ...(pkg.devDependencies || {}),
+  ...(pkg.peerDependencies || {}),
+}).reduce((calc, item) => {
+  return Array.from(new Set([...calc, item]))
+}, [])
+
 export default defineConfig({
   plugins: [
     react(),
@@ -36,9 +43,8 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       external: [
-        'react',
-        'react/jsx-runtime', //
-        'react-dom',
+        ..._external, //
+        'react/jsx-runtime',
         'history',
       ],
       output: [

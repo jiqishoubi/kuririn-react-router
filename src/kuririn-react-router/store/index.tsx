@@ -27,6 +27,7 @@ export interface IKState {
   allPageItems: IPageItem[]
   page404: any
   pages: IPage[] // 页面栈
+  closeDocumentFragmentCache: boolean
 }
 
 export interface IKContext {
@@ -64,6 +65,7 @@ export const defaultInitialState: IKState = {
   allPageItems: [],
   page404: Page404,
   pages: [],
+  closeDocumentFragmentCache: false,
 }
 
 export const KContext = createContext<IKContext>({
@@ -74,7 +76,12 @@ export const KContext = createContext<IKContext>({
 export const KProvider = KContext.Provider
 
 export function stateInitializer(defaultInitialState: IKState, props: IKRouterProps): IKState {
-  const { historyType = 'browser', pages: allPageItems_, page404 } = props
+  const {
+    historyType = 'browser', //
+    pages: allPageItems_,
+    page404,
+    closeDocumentFragmentCache = false,
+  } = props
 
   const allPageItems = (() => {
     function wrapComponent(Component: any) {
@@ -110,6 +117,7 @@ export function stateInitializer(defaultInitialState: IKState, props: IKRouterPr
     allPageItems,
     page404: _page404,
     pages,
+    closeDocumentFragmentCache,
   }
 }
 

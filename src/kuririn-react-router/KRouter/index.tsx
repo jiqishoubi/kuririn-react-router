@@ -21,6 +21,7 @@ export interface IKRouterProps {
   page404?: IPageItemComponent
   lazyLoading?: React.ReactNode
   children?: React.ReactNode // this children styles set position fixed
+  closeDocumentFragmentCache?: boolean
 }
 
 /**
