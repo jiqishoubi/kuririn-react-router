@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { onPageShow, onPageHide, useRouter } from '@/kuririn-react-router'
 
+const _fakeListData = new Array(100).fill(0).map((_, index) => index)
+
 const Index: React.FC = (props) => {
   // console.log("🚀 ~ index page props:", props)
   const router = useRouter()
   const [inputValue, setInputValue] = useState<string>('')
-  const [list, setList] = useState<any[]>([])
+  const [list, setList] = useState<number[]>([])
 
   useEffect(() => {
-    console.log('index load')
-    setList(new Array(100).fill(0))
+    console.log('🚀 ~ index load')
+    setList(_fakeListData)
     return () => {
-      console.log('index unload')
+      console.log('🚀 ~ index unload')
     }
   }, [])
 
   onPageShow(props, () => {
-    console.log('🚀 ~ ', 'index page show')
+    console.log('🚀 ~ index page show')
   })
 
   onPageHide(props, () => {
-    console.log('🚀 ~ ', 'index page hide')
+    console.log('🚀 ~ index page hide')
   })
 
   return (
     <>
-      <h2 style={{ marginBottom: 10 }}>Index page</h2>
+      <h2 style={{ marginBottom: 10 }}>Index Tab Page</h2>
 
       <div style={{ marginBottom: 10 }}>
         <div
@@ -33,7 +35,7 @@ const Index: React.FC = (props) => {
             display: 'flex',
           }}
         >
-          <label>Input: </label>
+          <label>input: </label>
           <input
             value={inputValue}
             onChange={(e) => {
@@ -46,15 +48,19 @@ const Index: React.FC = (props) => {
         </div>
       </div>
 
-      <div style={{ marginBottom: 10 }}>
-        <button
-          onClick={() => {
-            router.push('/detail1')
-          }}
-        >
-          push detail1 page
-        </button>
-      </div>
+      <button
+        onClick={() => {
+          router.push('/detail')
+        }}
+        style={{
+          position: 'fixed',
+          right: 0,
+          top: 100,
+          padding: '10px 20px',
+        }}
+      >
+        go detail
+      </button>
 
       <div className="list">
         <div>mock list: </div>
@@ -64,6 +70,7 @@ const Index: React.FC = (props) => {
               key={index}
               style={{
                 margin: '3px 0',
+                padding: 10,
                 borderBottom: '1px solid #eee',
               }}
             >

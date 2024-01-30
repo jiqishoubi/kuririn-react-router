@@ -5,7 +5,7 @@ const Index: React.FC = () => {
   const router = useRouter()
   return (
     <>
-      <h2 style={{ marginBottom: 10 }}>detail2 page</h2>
+      <h2 style={{ marginBottom: 10 }}>SubDetail Page</h2>
 
       <div style={{ marginBottom: 10 }}>
         <button

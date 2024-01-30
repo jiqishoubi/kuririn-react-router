@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { KContent, getPage } from '../store'
+import { KContext, getPage } from '../store'
 
 /**
  * ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -12,7 +12,7 @@ export default function useRouter() {
   const {
     state: { history, allPageItems },
     dispatch,
-  } = useContext(KContent)
+  } = useContext(KContext)
 
   const curPathname = history.location.pathname
 

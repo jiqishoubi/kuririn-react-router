@@ -1,5 +1,5 @@
 /// Entry file
-import React, { PropsWithChildren, Suspense, useReducer } from 'react'
+import React, { Suspense, useReducer } from 'react'
 import { KProvider, defaultInitialState, stateInitializer, reducer, IKAction, IKState } from '../store'
 import KRoutes from '../KRoutes'
 import { IHistoryType } from '../hooks/useHistory'
@@ -10,6 +10,7 @@ export type IPageItemComponent = any
 
 export interface IPageItem {
   path: string
+  pageTitle?: string
   component: IPageItemComponent
   isTab?: boolean
 }
@@ -19,12 +20,13 @@ export interface IKRouterProps {
   pages: IPageItem[]
   page404?: IPageItemComponent
   lazyLoading?: React.ReactNode
+  children?: React.ReactNode // this children styles set position fixed
 }
 
 /**
  *
  */
-const KRouter: React.FC<PropsWithChildren<IKRouterProps>> = (props) => {
+const KRouter: React.FC<IKRouterProps> = (props) => {
   const { children, lazyLoading } = props
 
   const [state, dispatch] = useReducer<(state: IKState, action: IKAction) => IKState, IKState>(reducer, defaultInitialState, (s) => stateInitializer(s, props))
@@ -38,11 +40,17 @@ const KRouter: React.FC<PropsWithChildren<IKRouterProps>> = (props) => {
         dispatch,
       }}
     >
-      <Suspense fallback={lazyLoading || <div>loading...</div>}>
-        <KRoutes />
-      </Suspense>
-
-      {children}
+      <div
+        id="_k_app"
+        style={{
+          height: '100vh',
+          overflow: 'hidden',
+        }}
+      >
+        <Suspense fallback={lazyLoading || <div>loading...</div>}>
+          <KRoutes>{children}</KRoutes>
+        </Suspense>
+      </div>
     </KProvider>
   )
 }

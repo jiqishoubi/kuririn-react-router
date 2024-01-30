@@ -2,7 +2,6 @@ import { createContext } from 'react'
 import { IKRouterProps, IPageItem } from '../KRouter'
 import { BrowserHistory, HashHistory, createBrowserHistory, createHashHistory } from 'history'
 import Page404 from '../404'
-import { produce } from 'immer'
 import { getIsTab } from '../utils'
 import { IHistoryType } from '../hooks/useHistory'
 
@@ -30,7 +29,7 @@ export interface IKState {
   pages: IPage[]
 }
 
-export interface IKContent {
+export interface IKContext {
   state: IKState
   dispatch: (action: IKAction) => void
 }
@@ -68,12 +67,12 @@ export const defaultInitialState: IKState = {
   pages: [],
 }
 
-export const KContent = createContext<IKContent>({
+export const KContext = createContext<IKContext>({
   state: defaultInitialState,
   dispatch: () => {},
 })
 
-export const KProvider = KContent.Provider
+export const KProvider = KContext.Provider
 
 export function stateInitializer(defaultInitialState: IKState, props: IKRouterProps): IKState {
   const { historyType = 'browser', pages: allPageItems_, page404 } = props
@@ -122,18 +121,18 @@ export function reducer(state: IKState, action: IKAction): IKState {
   switch (type) {
     case 'push': {
       const page = payload
-      const nextState = produce(state, (draft) => {
-        draft.pages.push(page)
-      })
-      return nextState
+      return {
+        ...state,
+        pages: [...pages, page],
+      }
     }
 
     case 'back': {
       const n = payload
-      const nextState = produce(state, (draft) => {
-        draft.pages = draft.pages.slice(0, draft.pages.length + n)
-      })
-      return nextState
+      return {
+        ...state,
+        pages: pages.slice(0, pages.length + n),
+      }
     }
 
     case 'switch': {
@@ -164,20 +163,20 @@ export function reducer(state: IKState, action: IKAction): IKState {
         })
       }
 
-      const nextState = produce(state, (draft) => {
-        draft.pages = nextPages
-      })
-      return nextState
+      return {
+        ...state,
+        pages: nextPages,
+      }
     }
 
     case 'replace': {
       const { curPathname, page } = payload
       const index = pages.findIndex((page) => page.pathname === curPathname)
       if (index > -1) {
-        const nextState = produce(state, (draft) => {
-          draft.pages[index] = page
-        })
-        return nextState
+        return {
+          ...state,
+          pages: [...pages.slice(0, index), page, ...pages.slice(index + 1)],
+        }
       }
       return state
     }

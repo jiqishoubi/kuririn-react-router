@@ -25,7 +25,6 @@ export default defineConfig({
   base: './',
   define: {
     global: 'window', // 为了修复 react-codemirror2 'global is not define'
-    // BASE_HOST: JSON.stringify(BASE_HOST),
   },
   // 打包库模式
   build: {
@@ -41,8 +40,7 @@ export default defineConfig({
         'react/jsx-runtime', //
         'react-dom',
         'history',
-        'immer',
-      ], // 确保外部化处理那些你不想打包进库的依赖
+      ],
       output: [
         {
           format: 'es',

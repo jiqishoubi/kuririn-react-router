@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react'
-import { IPage, KContent } from '../store'
+import { IPage, KContext } from '../store'
 
 const PageGetter: React.FC<{
   page: IPage
@@ -9,7 +9,7 @@ const PageGetter: React.FC<{
 
   const {
     state: { allPageItems, page404 },
-  } = useContext(KContent)
+  } = useContext(KContext)
 
   const PageComponent = useMemo(() => {
     const pathname = page.pathname

@@ -5,25 +5,25 @@ const Index: React.FC = () => {
   const router = useRouter()
   return (
     <>
-      <h2 style={{ marginBottom: 10 }}>detail1 page</h2>
+      <h2 style={{ marginBottom: 10 }}>Detail Page</h2>
 
       <div style={{ marginBottom: 10 }}>
         <button
           onClick={() => {
-            router.push('/detail2')
+            router.push('/subDetail')
           }}
         >
-          push detail2 page
+          go subDetail
         </button>
       </div>
 
       <div style={{ marginBottom: 10 }}>
         <button
           onClick={() => {
-            router.replace('/detail2')
+            router.replace('/subDetail')
           }}
         >
-          replace detail2 page
+          replace subDetail
         </button>
       </div>
 
@@ -34,6 +34,26 @@ const Index: React.FC = () => {
           }}
         >
           go back
+        </button>
+      </div>
+
+      <div style={{ marginBottom: 10 }}>
+        <button
+          onClick={() => {
+            router.switchTab('/')
+          }}
+        >
+          switchTab index
+        </button>
+      </div>
+
+      <div style={{ marginBottom: 10 }}>
+        <button
+          onClick={() => {
+            router.switchTab('/user')
+          }}
+        >
+          switchTab user
         </button>
       </div>
     </>

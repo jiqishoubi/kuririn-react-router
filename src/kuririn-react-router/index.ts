@@ -8,7 +8,7 @@
 ///
 
 export { default as KRouter } from './KRouter'
-
+export * from './KRouter'
 export { default as useRouter } from './hooks/useRouter'
 export { default as useHistory } from './hooks/useHistory'
 export { default as onPageShow } from './hooks/onPageShow'
