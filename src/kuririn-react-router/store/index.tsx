@@ -131,9 +131,19 @@ export function reducer(state: IKState, action: IKAction): IKState {
   switch (type) {
     case 'push': {
       const page = payload
-      return {
-        ...state,
-        pages: [...pages, page],
+      // 如果pages中本来已经有了，就把他移到最后面
+      // If there was already one in pages, move it to the end
+      const index = pages.findIndex((page) => page.pathname === payload.pathname)
+      if (index > -1) {
+        return {
+          ...state,
+          pages: [...pages.slice(0, index), ...pages.slice(index + 1), page],
+        }
+      } else {
+        return {
+          ...state,
+          pages: [...pages, page],
+        }
       }
     }
 

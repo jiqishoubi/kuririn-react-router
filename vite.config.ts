@@ -30,10 +30,10 @@ export default defineConfig({
     },
   },
   base: './',
-  define: {
-    global: 'window', // 为了修复 react-codemirror2 'global is not define'
-  },
-  // 打包库模式
+  /**
+   * 打包库模式
+   * Packaging Library Mode
+   */
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/kuririn-react-router/index.ts'),

@@ -28,7 +28,7 @@ export default function useRouter() {
    * back只是触发history的back，进而触发popstate,在popstate中去操作stack
    */
   function handleBack(n: number = -1) {
-    history.go(n)
+    history.go(n) // 这里会触发 window 的 popstate
   }
 
   function handleSwitchTab(url: string) {

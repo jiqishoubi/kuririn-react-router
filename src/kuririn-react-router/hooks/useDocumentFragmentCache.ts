@@ -32,7 +32,7 @@ export default function useDocumentFragmentCache(options: {
             fragment,
             scrollTop: scrollTopRef.current || 0,
           }
-          console.log(`🚀 ~ fragmentItem:`, fragmentItem)
+          // console.log(`🚀 ~ fragmentItem:`, fragmentItem)
           ;(window as any)._kuririn_react_router_page_cache[key] = fragmentItem
           // 不需要移除，加入文档碎片后，会自动移除
           // No need to remove, after adding document fragments, they will be automatically removed

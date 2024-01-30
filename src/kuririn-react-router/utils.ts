@@ -2,7 +2,7 @@ import { IPageItem } from './KRouter'
 import { IPage } from './store'
 
 export function getPageKey(page: IPage) {
-  return `_k_${page.url}`
+  return `_k_${page.url}` // 包含pathname和search
 }
 
 /**
