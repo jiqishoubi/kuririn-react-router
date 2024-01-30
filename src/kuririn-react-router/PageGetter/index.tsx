@@ -14,6 +14,7 @@ const PageGetter: React.FC<{
   const PageComponent = useMemo(() => {
     const pathname = page.pathname
     if (pathname === '/') {
+      // if the first page is '/', then render the first page
       return allPageItems[0]?.component || page404
     } else {
       let findPageItem

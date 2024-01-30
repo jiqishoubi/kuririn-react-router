@@ -17,7 +17,7 @@ export interface IPageItem {
 
 export interface IKRouterProps {
   historyType?: IHistoryType
-  pages: IPageItem[] //
+  pages: IPageItem[] // 数组第一个PageItem为首页 // The first PageItem in the array is the home page
   page404?: IPageItemComponent
   lazyLoading?: React.ReactNode
   children?: React.ReactNode // this children styles set position fixed
