@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { onPageShow, onPageHide, useRouter } from '@/kuririn-react-router'
+import { onPageShow, onPageHide, useRouter, UNSAFE_browserHistory, useCurrentPages } from '@/kuririn-react-router'
 
 const _fakeListData = new Array(100).fill(0).map((_, index) => index)
 
@@ -8,6 +8,9 @@ const Index: React.FC = (props) => {
   const router = useRouter()
   const [inputValue, setInputValue] = useState<string>('')
   const [list, setList] = useState<number[]>([])
+
+  const pages = useCurrentPages() // 获取当前页面栈
+  // console.log(`🚀 ~ pages:`, pages)
 
   useEffect(() => {
     console.log('🚀 ~ index load')

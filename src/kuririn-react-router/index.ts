@@ -15,6 +15,7 @@ export * from './KRoutes'
 
 export { default as useRouter } from './hooks/useRouter'
 export { default as useHistory } from './hooks/useHistory'
+export { default as useCurrentPages } from './hooks/useCurrentPages'
 export { default as onPageShow } from './hooks/onPageShow'
 export { default as onPageHide } from './hooks/onPageHide'
 
